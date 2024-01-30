@@ -1,0 +1,24 @@
+---
+import Card from "./Card.astro"
+import { itemsData, eventsData, teamsData } from "./mockData";
+---
+
+<main class="px-4 sm:px-6 lg:px-8">
+
+  <section>
+    <a href="eventos">
+        <h2 class="text-white px-12 pb-8 pt-16">Upcoming Events</h2>
+    </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {eventsData.map((event) => (
+        <Card
+          key={event.date}
+          title={event.date}
+          description={event.description}
+          category="Event"
+          href='/eventos'
+          className="max-w-md bg-gray-600 dynamic"
+        />
+      ))}
+    </div>
+  </section>

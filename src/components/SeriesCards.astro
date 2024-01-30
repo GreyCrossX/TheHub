@@ -1,0 +1,26 @@
+---
+import Card from "./Card.astro"
+import { itemsData, eventsData, teamsData } from "./mockData";
+---
+
+<main class="px-4 sm:px-6 lg:px-8">
+
+<section>
+    <a href="series">
+        <h2 class="text-white px-12 py-8">Featured Teams</h2>
+    </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {teamsData.map((team) => (
+        <Card
+          key={team.name}
+          title={team.name}
+          description={team.description}
+          category="Team"
+          href={team.url}
+          className="max-w-md bg-gray-600 dynamic"
+        />
+      ))}
+    </div>
+  </section>
+
+</main>

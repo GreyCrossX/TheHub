@@ -1,0 +1,27 @@
+---
+import Card from "./Card.astro"
+import { itemsData, eventsData, teamsData } from "./mockData";
+---
+
+<main class="px-4 sm:px-6 lg:px-8">
+
+
+
+  <section>
+    <a href="/tienda">
+        <h2 class="text-white px-12 py-8">Compra la merch de tu equipo y recibe un envío a domicilio!</h2>
+    </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+      {itemsData.map((item) => (
+        <Card
+          key={String(item.id)}
+          title={item.description}
+          description={`Category: ${item.category}, Price: $${item.price}`}
+          category="Shop Item"
+          href={item.url}
+          className="max-w-md bg-gray-600 dynamic"
+        />
+      ))}
+    </div>
+  </section>
+</main>

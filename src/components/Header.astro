@@ -1,0 +1,73 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<header class="py-3 px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black" id="Header">
+
+
+    <nav class="flex flex-grow basis-0">
+        <img src="your-logo.png" alt="Logo" class="h-8 w-8 mr-2"> 
+        <span class="text-xl font-semibold">The Hub</span>
+    </nav>
+
+    <div class="xl:hidden sm:flex">
+        <button id="burger-menu" class="text-white">
+            <span class="block">&nbsp;</span>
+            <span class="block">&nbsp;</span>
+            <span class="block">&nbsp;</span>
+        </button>
+    </div>
+    
+    <nav class="flex-grow hidden xl:block sm:flex">
+        <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
+            <li><a href="/"class="hover:text-gray-600">Home</a></li>
+            <li><a href="/tienda" class="hover:text-gray-600">Tienda</a></li>
+            <li><a href="/eventos" class="hover:text-gray-600">Eventos</a></li>
+            <li><a href="/experiencias" class="hover:text-gray-600">Experiencias</a></li>
+            <li><a href="/series" class="hover:text-gray-600">The Hub: Series</a></li>
+            
+        </ul>
+    </nav>
+
+
+    <nav class="hidden xl:block sm:flex">
+        <ul class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2">
+            <li><a href="/login" class="hover:text-gray-600">Login</a></li>
+            <li><a href="/registro" class="hover:text-gray-600">Registro</a></li>
+            <li><a href="/carrito" class="hover:text-gray-600">
+                <Icon name="cart" class="text-xl"/>
+            </a></li>
+        </ul>
+    </nav>
+
+</header>
+
+
+<div id="menu-backdrop" class="fixed top-0 left-0 bg-black opacity-0 visibility-hidden transition-all duration-500"></div>
+
+<script>
+    // ... Your existing JavaScript for the menu backdrop
+</script>
+
+<script>
+    const headerEl = document.querySelector("#Header") as HTMLElement;
+
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.9,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const { isIntersecting } = entry;
+            if (isIntersecting) {
+                const color = entry.target.getAttribute("data-header-color");
+                headerEl.style.color = color;
+            }
+        });
+    }, observerOptions);
+
+    const sectionElements = document.querySelectorAll(".landing-section");
+    sectionElements.forEach((section) => observer.observe(section));
+</script>
